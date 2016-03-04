@@ -18,13 +18,8 @@ class CountingActor extends UntypedActor {
   public static class Count {}
   public static class Get {}
 
-  // the service that will be automatically injected
-  final CountingService countingService;
-
   @Inject
-  public CountingActor(@Named("CountingService") CountingService countingService) {
-    this.countingService = countingService;
-  }
+  private CountingService countingService;
 
   private int count = 0;
 

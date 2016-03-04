@@ -10,7 +10,6 @@ import org.junit.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import sample.CountingActor.Count;
 import sample.CountingActor.Get;
-import static sample.SpringExtension.SpringExtProvider;
 import scala.concurrent.Await;
 import scala.concurrent.Future;
 import scala.concurrent.duration.FiniteDuration;
@@ -28,7 +27,7 @@ public class SpringTest {
     ActorSystem system = ctx.getBean(ActorSystem.class);
     // use the Spring Extension to create props for a named actor bean
     ActorRef counter = system.actorOf(
-      SpringExtProvider.get(system).props("CountingActor"), "counter");
+      SpringExtension.factory.get(system).props("CountingActor"), "counter");
 
     // tell it to count three times
     counter.tell(new Count(), null);
